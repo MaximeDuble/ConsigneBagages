@@ -3,8 +3,7 @@
 #include <string>
 #include <queue>
 
-Consigne::Consigne(int capacite) {
-    this->capacite_ = capacite; 
+Consigne::Consigne(int capacite) : capacite_(capacite) {
  
     for (int i = 0 ; i < capacite ; i++) {
         this->casiersLibres_.push(Casier{i+1, ""});
