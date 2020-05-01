@@ -6,10 +6,11 @@ class vBagage {
     public:
 
         vBagage(float volume);
-        virtual void calculerVolume() = 0;
-        float getVolume();
+        vBagage();
+        virtual float calculerVolume() = 0;
+        float getVolume() const;
 
-    private:
+    protected:
 
         float volume_;
 

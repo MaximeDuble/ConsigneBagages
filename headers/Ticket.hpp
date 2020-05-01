@@ -16,7 +16,7 @@ class Ticket {
 
         // DEBOGAGE
 
-        std::string d_getCode();
+        std::string d_getCode() const;
 
     private:
         std::string code_;

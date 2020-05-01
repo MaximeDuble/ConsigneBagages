@@ -18,14 +18,14 @@ class Consigne {
 
         Consigne(int size);
         ~Consigne();
-        bool estPleine();
+        bool estPleine() const;
         Ticket deposerBagage(Bagage bagage);
         Bagage retirerBagage(Ticket ticket);
 
         // DEBOGAGE
 
-        size_t d_tailleActuelle();
-        void d_afficherFile();
+        size_t d_tailleActuelle() const;
+        void d_afficherFile() const;
 
     private:
 

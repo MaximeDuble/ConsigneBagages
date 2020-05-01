@@ -7,7 +7,8 @@ class vMalette: public vBagage {
 
     public: 
 
-        vMaletteCubique(float longueur, float largeur);
+        vMalette(float longueur, float largeur);
+        float calculerVolume(float longueur, float largeur) const;
 
     private:
 

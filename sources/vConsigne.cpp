@@ -85,7 +85,7 @@ std::queue<vCasier> vConsigne::genererFileVide(float volume, int indexInitial, i
  * Détermine si la consigne est pleine. 
  * @return true si la consigne n'a aucune place disponible pour accueillir un nouveau bagage, false sinon.
 */
-bool vConsigne::estPleine() {
+bool vConsigne::estPleine() const {
 
     return this->nbCasiersDisponibles_ == 0; 
 
@@ -157,6 +157,8 @@ float vConsigne::trouverVolumeCasierDisponibleOptimal(float volumeBagage) {
         if(it->first >= volumeBagage && it->second > 0) {
             flagVolumeTrouve = true;
             volumeOptimalCasierDispo = it->first;
+
+            // Un casier a été trouvé, on diminue le nombre de casiers disponibles pour ce volume.
             it->second--;
         }
 
@@ -172,14 +174,14 @@ float vConsigne::trouverVolumeCasierDisponibleOptimal(float volumeBagage) {
 
 // DEBOGAGE
 
-void vConsigne::d_afficherVecteur() {
+void vConsigne::d_afficherVecteur() const {
 
     for (auto paire : nbCasiersDisponiblesParVolumes_) {
         std::cout << paire.first << " : " << paire.second << std::endl;
     }
 }
 
-void vConsigne::d_afficherCasiersLibres() {
+void vConsigne::d_afficherCasiersLibres() const {
 
     std::unordered_map<float, std::queue<vCasier>> copy = this->casiersLibres_;
 
@@ -190,7 +192,7 @@ void vConsigne::d_afficherCasiersLibres() {
     }
 }
 
-void vConsigne::d_afficherFile(std::queue<vCasier> file) {
+void vConsigne::d_afficherFile(std::queue<vCasier> file) const {
 
     std::queue<vCasier> fileCopie = file;
 

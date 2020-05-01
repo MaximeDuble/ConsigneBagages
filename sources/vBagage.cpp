@@ -4,6 +4,6 @@ vBagage::vBagage(float volume) {
     this->volume_ = volume;
 }
 
-float vBagage::getVolume() {
+float vBagage::getVolume() const {
     return this->volume_;
 }

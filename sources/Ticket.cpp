@@ -50,6 +50,6 @@ bool Ticket::operator!=(Ticket const& autre) const{
 
 // FCT° DE DEBOGAGE
 
-std::string Ticket::d_getCode() {
+std::string Ticket::d_getCode() const{
     return this->code_;
 }

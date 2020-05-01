@@ -24,7 +24,7 @@ class vConsigne {
         vConsigne(std::vector<float>, std::vector<int>);
         ~vConsigne();
         
-        bool estPleine();
+        bool estPleine() const;
         Ticket deposerBagage(vBagage* bagage);
         vBagage* retirerBagage(Ticket ticket);
 
@@ -33,9 +33,9 @@ class vConsigne {
 
     // DEBOGAGE
 
-        void d_afficherVecteur();
-        void d_afficherCasiersLibres();
-        void d_afficherFile(std::queue<vCasier> file);
+        void d_afficherVecteur() const;
+        void d_afficherCasiersLibres() const;
+        void d_afficherFile(std::queue<vCasier> file) const;
 
     private:
 

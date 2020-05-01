@@ -15,7 +15,8 @@ Consigne::~Consigne() {
     
 }
 
-bool Consigne::estPleine() {
+bool Consigne::estPleine() const {
+    // this->casiersLibres_.empty(); ???
     return (int) this->casiersPleins_.size() == this->capacite_;
 }
 
@@ -70,11 +71,11 @@ Bagage Consigne::retirerBagage(Ticket ticket){
 
 // DEBOGAGE
 
-size_t Consigne::d_tailleActuelle(){
+size_t Consigne::d_tailleActuelle() const {
     return this->casiersPleins_.size();
 }
 
-void Consigne::d_afficherFile() {
+void Consigne::d_afficherFile() const {
 
     std::queue<Casier> fileCopie = this->casiersLibres_;
 
