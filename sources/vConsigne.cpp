@@ -39,13 +39,9 @@ vConsigne::vConsigne(std::vector<float> volumes, std::vector<int> nbCasiers) {
     // Au debut, tous les casiers sont disponibles.
     this->nbCasiersDisponibles_ = this->capacite_;
 
-    this->d_afficherVecteur();
-
     // Utilisation de la fonction standard "sort" (de complexité temporelle moyenne nlog(n)) afin de trier notre vecteur de pair en fonction de la première valeur.
     // Peut être utilisation de tri par insertion ? Tri rapide pas vraiment rapide pour un petit tableau.
     std::sort(this->nbCasiersDisponiblesParVolumes_.begin(), this->nbCasiersDisponiblesParVolumes_.end());
-
-    this->d_afficherVecteur();
 
 
 

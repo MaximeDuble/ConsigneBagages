@@ -8,11 +8,28 @@
 #include <unordered_map>
 #include <vector>
 
+#include <set>
+
 struct vCasier {
 
     int numero;
     vBagage* bagage;
     float volume;
+    int indexLiberation;
+
+    bool operator< (const vCasier& autreCasier) const {
+
+        if(this->volume == autreCasier.volume) {
+            return this->indexLiberation <= autreCasier.indexLiberation;
+        } else {
+            return this->volume < autreCasier.volume;
+        }
+    }
+
+    bool operator==(const vCasier& autreCasier) const {
+        // Chaque casier a un numéro unique, il est inutile de comparer les autres attributs.
+        return this->numero == autreCasier.numero;
+    }
 
 };
 
@@ -91,6 +108,10 @@ class vConsigne {
         std::unordered_map<float, std::queue<vCasier>> casiersLibres_;
         // Tableau de paire de volumes associés au nombre de casiers disponibles de ce volume.
         std::vector<std::pair<float, int>> nbCasiersDisponiblesParVolumes_;
+
+        std::set<vCasier> casiersDisponbibles_;
+
+        int nbCasiersLiberes_;
 
 
 
