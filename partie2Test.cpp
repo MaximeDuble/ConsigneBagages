@@ -19,10 +19,9 @@ int main() {
     std::vector<int> nbDispo = {2, 2, 2, 2};
 
         // TODO : TRY
+
     vConsigne consigne(volumes, nbDispo);
     
-    consigne.d_afficherCasiersLibres();
-
     // 2 - Création de 15 bagages, 5 malettes, 5 cylindres, 5 demi-sphères.
 
     vBagage* malette1 = new vMalette("Malette1", "Marque", 20.5, 10.8, 15.2);
@@ -40,39 +39,43 @@ int main() {
     vBagage* demisphere1 = new vDemiSphere("Demi-sphère1" ,"Marque", 15.2);
     vBagage* demisphere2 = new vDemiSphere("Demi-sphère2" ,"Marque", 36);
     vBagage* demisphere3 = new vDemiSphere("Demi-sphère3" ,"Marque", 35.2);
-    vBagage* demisphere4 = new vDemiSphere("Demi-sphère4" ,"Marque", 5.2);
+    vBagage* demisphere4 = new vDemiSphere("Demi-sphère4" ,"Marque", 26);
     vBagage* demisphere5 = new vDemiSphere("Demi-sphère5" ,"Marque", 37);
 
     // ESSAIS
 
     try {
-        Ticket ticket = consigne.deposerBagage(malette1);
-        Ticket ticket2 = consigne.deposerBagage(malette2);
+        Ticket ticketMalette1 = consigne.deposerBagage(malette1);
+
+         consigne.d_afficherCasiersLibres();
+
+
+        Ticket ticketMalette5 = consigne.deposerBagage(malette5);
+        consigne.d_afficherCasiersLibres();
+  
+        vBagage* bagage2 = consigne.retirerBagage(ticketMalette5);
+        vBagage* bagage1 = consigne.retirerBagage(ticketMalette1);
+
+        consigne.d_afficherCasiersLibres();
+
+        Ticket ticketDS4 = consigne.deposerBagage(demisphere4);
+        vBagage* bagage4 = consigne.retirerBagage(ticketDS4);
+
+        consigne.d_afficherCasiersLibres();
+
+        
+        Ticket ticketDS5 = consigne.deposerBagage(bagage4);
+
+        
+        
     } catch (char const* s) {
         std::cerr << s << std::endl;
     }
+    
 
     std::cout << " " << std::endl;
     consigne.d_afficherCasiersLibres();
 
-    /* 3 - Dépots et retraits de ces bagages.
-    
-    try {
-
-        consigne.d_afficherVecteur();
-        Ticket ticket1 = consigne.deposerBagage(demisphere5);
-        consigne.d_afficherVecteur();
-        Ticket ticket2 = consigne.deposerBagage(demisphere2);
-        consigne.d_afficherVecteur();
-        vBagage* bagageRecupe = consigne.retirerBagage(ticket1);
-        Ticket ticket3 = consigne.deposerBagage(demisphere3);
-        consigne.d_afficherVecteur();
-
-    } catch (const char* s) {
-        std::cerr << s << std::endl;
-    }
-
-    */
 
     return 0;
 }

@@ -13,6 +13,7 @@ class vBagage {
          * Retourne le volume en litres d'un bagage. 
          */
         float getVolume() const;
+        std::string getNom() const;
 
     protected:
 

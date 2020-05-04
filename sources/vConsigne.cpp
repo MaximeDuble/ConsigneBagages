@@ -37,9 +37,10 @@ vConsigne::vConsigne(std::vector<float> volumes, std::vector<int> nbCasiers) {
 
     }
 
-    // Au debut, tous les casiers sont disponibles.
+    // Au début, tous les casiers sont disponibles.
     this->nbCasiersDisponibles_ = this->capacite_;
 
+    // Au début, aucun casier n'a été libéré.
     this->nbCasiersLiberes_ = 0;
 }
 
@@ -78,15 +79,37 @@ Ticket vConsigne::deposerBagage(vBagage* bagage) {
 
 vBagage* vConsigne::retirerBagage(Ticket ticket) {
     
-    this->nbCasiersLiberes_++;    
 
-    
+    auto it = this->casiersPleins_.find(ticket);
+
+    if (it != this->casiersPleins_.end()) {
+
+        this->nbCasiersLiberes_++;  
+        vBagage* bagageTrouve = it->second.bagage;
+
+        it->second.indexLiberation = this->nbCasiersLiberes_;
+
+        it->second.bagage = nullptr;
+
+        this->casiersDisponibles_.insert(it->second);
+        this->casiersPleins_.erase(it);
+
+        
+
+        this->nbCasiersDisponibles_++;
+
+        return bagageTrouve;
+   
+    } else throw std::string("Bagage non trouvé.");
+
+      
 }
 
 // DEBOGAGE
 
 void vConsigne::d_afficherCasiersLibres() {
 
+    std::cout << "" << std::endl;
     for(const auto& e : this->casiersDisponibles_) {
         std::cout << e.numero << " : " << e.volume << " : " << e.indexLiberation << std::endl;
     }

@@ -10,3 +10,7 @@ vBagage::vBagage() : nom_("Aucun nom"), marque_("Aucune marque"), volume_(0) {
 float vBagage::getVolume() const {
     return this->volume_;
 }
+
+std::string vBagage::getNom() const {
+    return this->nom_;
+}

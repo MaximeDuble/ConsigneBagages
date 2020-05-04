@@ -74,7 +74,7 @@ class vConsigne {
 
         void d_afficherCasiersLibres();
 
-        std::set<vCasier> casiersDisponibles_;
+        
 
 
     private:
@@ -87,7 +87,14 @@ class vConsigne {
         // Table de hachage associant un Ticket à son Casier.
         std::unordered_map<Ticket, vCasier> casiersPleins_;
 
-        int nbCasiersLiberes_;
+        /** Nombre de casiers libérés depuis le début de l'existence de la consigne, permet de savoir quel casier a été libéré il y a le plus longtemps et donc quel casier choisir
+         *  valeur maximale d'un unsigned long : 4 294 967 295.
+         *  TODO : Préciser pq on a choisit ça.
+        */
+        long nbCasiersLiberes_;
+
+        // Liste des casiers disponibles, ordonnés en fonction de leur volume et de leur date de dernière utilisation.
+        std::set<vCasier> casiersDisponibles_;
 
 
 
