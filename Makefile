@@ -1,5 +1,5 @@
-main2: ./bin/partie2Test.o ./bin/Ticket.o ./bin/vConsigne.o ./bin/vBagage.o
-	g++ ./bin/partie2Test.o ./bin/Ticket.o ./bin/vConsigne.o ./bin/vBagage.o -o main2
+main2: ./bin/partie2Test.o ./bin/Ticket.o ./bin/vConsigne.o ./bin/vMalette.o ./bin/vCylindre.o ./bin/vDemiSphere.o ./bin/vBagage.o
+	g++ ./bin/partie2Test.o ./bin/Ticket.o ./bin/vConsigne.o ./bin/vMalette.o ./bin/vCylindre.o ./bin/vDemiSphere.o ./bin/vBagage.o -o main2
 
 #main1 : ./bin/partie1Test.o ./bin/Ticket.o ./bin/Consigne.o
 #	g++ ./bin/partie1Test.o ./bin/Ticket.o ./bin/Consigne.o -o main1
@@ -21,6 +21,15 @@ main2: ./bin/partie2Test.o ./bin/Ticket.o ./bin/vConsigne.o ./bin/vBagage.o
 
 ./bin/vBagage.o : ./sources/vBagage.cpp
 	g++ -c ./sources/vBagage.cpp -o ./bin/vBagage.o
+
+./bin/vMalette.o : ./sources/vMalette.cpp
+	g++ -c ./sources/vMalette.cpp -o ./bin/vMalette.o
+
+./bin/vCylindre.o : ./sources/vCylindre.cpp
+	g++ -c ./sources/vCylindre.cpp -o ./bin/vCylindre.o
+
+./bin/vDemiSphere.o : ./sources/vDemiSphere.cpp
+	g++ -c ./sources/vDemiSphere.cpp -o ./bin/vDemiSphere.o
 
 clear:
 	rm ./bin/*.o

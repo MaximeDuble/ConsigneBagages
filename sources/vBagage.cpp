@@ -1,7 +1,10 @@
 #include "../headers/vBagage.hpp"
 
-vBagage::vBagage(float volume) : volume_(volume) {
-    // assert volume 
+vBagage::vBagage(std::string nom, std::string marque) : nom_(nom), marque_(marque), volume_(0) {
+}
+
+vBagage::vBagage() : nom_("Aucun nom"), marque_("Aucune marque"), volume_(0) {
+
 }
 
 float vBagage::getVolume() const {
