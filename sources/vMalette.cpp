@@ -1,10 +1,10 @@
 #include "../headers/vMalette.hpp"
 
-vMalette::vMalette(float longueur, float largeur) {
+vMalette::vMalette(float longueur, float largeur, float profondeur) : longueur_(longueur), largeur_(largeur), profondeur_(profondeur) {
 
-    this->volume_ = this->calculerVolume(longueur, largeur);
+    this->volume_ = this->calculerVolume();
 }
 
-float vMalette::calculerVolume(float longueur, float largeur) const {
-    return longueur * largeur;
+float vMalette::calculerVolume() const {   
+    return (this->longueur_ * this->largeur_ * this->profondeur_) / 1000;
 }

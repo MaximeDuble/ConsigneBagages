@@ -7,7 +7,7 @@ class vBagage {
 
         vBagage(float volume);
         vBagage();
-        virtual float calculerVolume() = 0;
+        virtual float calculerVolume() const = 0;
         float getVolume() const;
 
     protected:

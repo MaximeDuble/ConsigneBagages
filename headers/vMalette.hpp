@@ -7,10 +7,14 @@ class vMalette: public vBagage {
 
     public: 
 
-        vMalette(float longueur, float largeur);
-        float calculerVolume(float longueur, float largeur) const;
+        vMalette(float longueur, float largeur, float profondeur);
+        float calculerVolume() const override;
 
     private:
+
+        float longueur_;
+        float largeur_;
+        float profondeur_;
 
 
 };
