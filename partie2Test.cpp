@@ -16,14 +16,16 @@ int main() {
     // 1 - Création d'une consigne de 14 casiers.
 
     std::vector<float> volumes = {1, 5.5, 10, 15};
-    std::vector<int> nbDispo = {4, 6, 2, 2};
+    std::vector<int> nbDispo = {2, 2, 2, 2};
 
         // TODO : TRY
     vConsigne consigne(volumes, nbDispo);
+    
+    consigne.d_afficherCasiersLibres();
 
     // 2 - Création de 15 bagages, 5 malettes, 5 cylindres, 5 demi-sphères.
 
-    vBagage* malette1 = new vMalette("Malette1", "Marque", 20.5, 10.8, 15.7);
+    vBagage* malette1 = new vMalette("Malette1", "Marque", 20.5, 10.8, 15.2);
     vBagage* malette2 = new vMalette("Malette2", "Marque", 21.2, 5.8, 18.7);
     vBagage* malette3 = new vMalette("Malette3", "Marque", 12.2, 10.8, 14.7);
     vBagage* malette4 = new vMalette("Malette4", "Marque", 15.2, 10.8, 12.7);
@@ -43,16 +45,15 @@ int main() {
 
     // ESSAIS
 
-
-    std::set<vCasier> monSet = {{0, nullptr, 15, 0}, {1, nullptr, 16, 0}, {2, nullptr, 15, 0}, {3, nullptr, 16, 0}};
-
-    std::cout << monSet.size() << std::endl;
-
-    for(const auto& e : monSet) {
-        std::cout << e.numero << " : " << e.volume << " : " << e.indexLiberation << std::endl;
+    try {
+        Ticket ticket = consigne.deposerBagage(malette1);
+        Ticket ticket2 = consigne.deposerBagage(malette2);
+    } catch (char const* s) {
+        std::cerr << s << std::endl;
     }
 
-
+    std::cout << " " << std::endl;
+    consigne.d_afficherCasiersLibres();
 
     /* 3 - Dépots et retraits de ces bagages.
     

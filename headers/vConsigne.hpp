@@ -31,6 +31,10 @@ struct vCasier {
         return this->numero == autreCasier.numero;
     }
 
+    void setIndexLiberation(int nouvelIndex) {
+        this->indexLiberation = nouvelIndex;
+    }
+
 };
 
 class vConsigne {
@@ -68,34 +72,12 @@ class vConsigne {
         */
         vBagage* retirerBagage(Ticket ticket);
 
-        
+        void d_afficherCasiersLibres();
 
-        
+        std::set<vCasier> casiersDisponibles_;
 
-    // DEBOGAGE
-
-        void d_afficherVecteur() const;
-        void d_afficherCasiersLibres() const;
-        void d_afficherFile(std::queue<vCasier> file) const;
 
     private:
-
-        /** Retourne le volume optimal d'un casier disponible pour acceuillir un bagage de volume volumeBagage. 
-        * @param volumeBagage, le volume du bagage que l'on veut placer dans la consigne.
-        * @return le volume d'un casier optimal disponible.
-        * @throw erreur si aucun casier de la taille demandée n'est disponible.
-        */
-        float trouverVolumeCasierDisponibleOptimal(float volumeBagage);
-
-
-        /**
-         * Génère une file de "nbCasiers" casiers d'un volume "volume" avec des numéros allant de "indexInitial" à "indexInitial" + "nbCasiers".
-         * @param volume, le volume de chaque casier contenu dans la file.
-         * @param indexInitial, l'index dans la consigne du premier casier de la file.
-         * @param nbCasiers, le nombre de casiers créés.
-         * @return fileCasiers, la file remplie de casiers.
-         */
-        std::queue<vCasier> genererFileVide(float volume, int indexInitial, int nbCasiers);
 
         // Nombre de casiers totaux.
         int capacite_;
@@ -104,12 +86,6 @@ class vConsigne {
 
         // Table de hachage associant un Ticket à son Casier.
         std::unordered_map<Ticket, vCasier> casiersPleins_;
-        // Table de hachage associant une file de casiers libres de même volume à leur volume.
-        std::unordered_map<float, std::queue<vCasier>> casiersLibres_;
-        // Tableau de paire de volumes associés au nombre de casiers disponibles de ce volume.
-        std::vector<std::pair<float, int>> nbCasiersDisponiblesParVolumes_;
-
-        std::set<vCasier> casiersDisponbibles_;
 
         int nbCasiersLiberes_;
 
