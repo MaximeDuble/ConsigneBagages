@@ -12,13 +12,25 @@
 
 struct vCasier {
 
+    // Numéro unique allant de 1 à la capacité de la consigne.
     int numero;
+
+    // Pointeur vers le bagage contenu dans le casier, nullptr si aucun bagage.
     vBagage* bagage;
+
+    // Volume du casier en litres.
     float volume;
+
+    /** Cet attribut permet de savoir quel casier a été libéré il y a le plus longtemps. 
+     *  En effet, plus indexLiberation sera proche de 0, plus le casier aura été libéré il y a longtemps (0 si jamais rempli).
+     *  Nous pouvons ainsi ordonné notre liste ordonnée (set) de casiers en fonction de volumes et de l'indexLiberation. 
+    */
     int indexLiberation;
 
+    
     bool operator< (const vCasier& autreCasier) const {
 
+        // Si les deux casiers ont un volume égal, alors celui qui a été libéré en dernier (qui a l'indexLiberation le plus faible) est prioritaire et donc avant l'autre dans le set.
         if(this->volume == autreCasier.volume) {
             return this->indexLiberation <= autreCasier.indexLiberation;
         } else {
@@ -29,10 +41,6 @@ struct vCasier {
     bool operator==(const vCasier& autreCasier) const {
         // Chaque casier a un numéro unique, il est inutile de comparer les autres attributs.
         return this->numero == autreCasier.numero;
-    }
-
-    void setIndexLiberation(int nouvelIndex) {
-        this->indexLiberation = nouvelIndex;
     }
 
 };
@@ -58,6 +66,12 @@ class vConsigne {
         */
         bool estPleine() const;
 
+        /** Détermine si un casier de taille suffisante est disponible pour accueillir un bagage de volume volume.
+         * @param volume, le volume du bagage.
+         * @return true si un casier est trouvé.
+         */
+        bool casierDeBonneTailleDisponible(float volume) const;
+
         /** Depose le bagage du client dans un casier de taille optimale et retourne un ticket. 
         *  
         *  @param bagage, pointeur vers une instance d'un objet héritant de la classe vBagage
@@ -65,6 +79,7 @@ class vConsigne {
         *  @throw erreur si la consigne est pleine ou qu'aucun casier n'est disponible pour un bagage de ce volume.
         */
         Ticket deposerBagage(vBagage* bagage);
+
 
         /** Rends au client le bagage se situant de le casier associé au Ticket. 
          * @param ticket, le ticket du casier.
@@ -81,8 +96,6 @@ class vConsigne {
 
         // Nombre de casiers totaux.
         int capacite_;
-        // Nombre de casiers libres.
-        int nbCasiersDisponibles_;
 
         // Table de hachage associant un Ticket à son Casier.
         std::unordered_map<Ticket, vCasier> casiersPleins_;
