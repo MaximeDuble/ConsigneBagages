@@ -10,13 +10,6 @@ vConsigne::vConsigne() {
 
 }
 
-/** Initialise une consigne avec nbCasiers[i] d'un volume volumes[i] disponibles avec i de 0 à nbCasiers.size()
- * 
- *  @param volumes, un vecteur de nombres flottants correspondant aux différents volumes disponibles
- *  @param nbCasiers, un vecteur d'entiers correspondant aux nbCasiers disponibles associés aux différents volumes disponibles.
- *  @throw Erreur si les tableaux en entrée ont une taille différent ou si l'une de leur valeur est strictement inférieure à 0.
- * 
-*/
 vConsigne::vConsigne(std::vector<float> volumes, std::vector<int> nbCasiers) {
 
     if(volumes.size() != nbCasiers.size()) {
@@ -61,13 +54,7 @@ vConsigne::vConsigne(std::vector<float> volumes, std::vector<int> nbCasiers) {
 vConsigne::~vConsigne() {
 
 }
-/**
- * Génère une file de "nbCasiers" casiers d'un volume "volume" avec des numéros allant de "indexInitial" à "indexInitial" + "nbCasiers".
- * @param volume, le volume de chaque casier contenu dans la file.
- * @param indexInitial, l'index dans la consigne du premier casier de la file.
- * @param nbCasiers, le nombre de casiers créés.
- * @return fileCasiers, la file remplie de casiers.
- */
+
 std::queue<vCasier> vConsigne::genererFileVide(float volume, int indexInitial, int nbCasiers) {
     std::queue<vCasier> fileCasiers;
 
@@ -80,23 +67,12 @@ std::queue<vCasier> vConsigne::genererFileVide(float volume, int indexInitial, i
 
 } 
 
-
-/** 
- * Détermine si la consigne est pleine. 
- * @return true si la consigne n'a aucune place disponible pour accueillir un nouveau bagage, false sinon.
-*/
 bool vConsigne::estPleine() const {
 
     return this->nbCasiersDisponibles_ == 0; 
 
 }
 
-/** Depose le bagage du client dans un casier de taille optimale et retourne un ticket. 
- *  
- *  @param bagage, pointeur vers une instance d'un objet héritant de la classe vBagage
- *  @return Ticket, le ticket du casier ou est stocké le bagage.
- *  @throw erreur si la consigne est pleine ou qu'aucun casier n'est disponible pour un bagage de ce volume.
-*/
 Ticket vConsigne::deposerBagage(vBagage* bagage) {
 
     if(this->estPleine()) throw "ERREUR : La consigne est pleine.";
@@ -127,21 +103,12 @@ Ticket vConsigne::deposerBagage(vBagage* bagage) {
     return ticketClient;
 }
 
-/** Rends au client le bagage se situant de le casier associé au Ticket. 
- * @param ticket, le ticket du casier.
- * @return bagage du client.
-*/
 vBagage* vConsigne::retirerBagage(Ticket ticket) {
 
 }
 
 // PRIVATE
 
-/** Retourne le volume optimal d'un casier disponible pour acceuillir un bagage de volume volumeBagage. 
- * @param volumeBagage, le volume du bagage que l'on veut placer dans la consigne.
- * @return le volume d'un casier optimal disponible.
- * @throw erreur si aucun casier de la taille demandée n'est disponible.
-*/
 float vConsigne::trouverVolumeCasierDisponibleOptimal(float volumeBagage) {
 
     float volumeOptimalCasierDispo;
