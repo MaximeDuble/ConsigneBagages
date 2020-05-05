@@ -1,8 +1,8 @@
 main2: ./bin/partie2Test.o ./bin/Ticket.o ./bin/vConsigne.o ./bin/vMalette.o ./bin/vCylindre.o ./bin/vDemiSphere.o ./bin/vBagage.o
 	g++ ./bin/partie2Test.o ./bin/Ticket.o ./bin/vConsigne.o ./bin/vMalette.o ./bin/vCylindre.o ./bin/vDemiSphere.o ./bin/vBagage.o -o main2
 
-#main1 : ./bin/partie1Test.o ./bin/Ticket.o ./bin/Consigne.o
-#	g++ ./bin/partie1Test.o ./bin/Ticket.o ./bin/Consigne.o -o main1
+main1 : ./bin/partie1Test.o ./bin/Ticket.o ./bin/Consigne.o
+	g++ ./bin/partie1Test.o ./bin/Ticket.o ./bin/Consigne.o -o main1
 
 ./bin/partie1Test.o : partie1Test.cpp
 	g++ -c partie1Test.cpp -o ./bin/partie1Test.o

@@ -56,7 +56,7 @@ class vConsigne {
         * @param nbCasiers, un vecteur d'entiers correspondant aux nbCasiers disponibles associés aux différents volumes disponibles.
         * @throw Erreur si les tableaux en entrée ont une taille différent ou si l'une de leur valeur est strictement inférieure à 0.
         */
-        vConsigne(std::vector<float>, std::vector<int>);
+        vConsigne(std::vector<float> volumes, std::vector<int> nbCasiers);
         ~vConsigne();
         
 
@@ -102,7 +102,6 @@ class vConsigne {
 
         /** Nombre de casiers libérés depuis le début de l'existence de la consigne, permet de savoir quel casier a été libéré il y a le plus longtemps et donc quel casier choisir
          *  valeur maximale d'un unsigned long : 4 294 967 295.
-         *  TODO : Préciser pq on a choisit ça.
         */
         long nbCasiersLiberes_;
 

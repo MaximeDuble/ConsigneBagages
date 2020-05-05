@@ -124,6 +124,6 @@ void vConsigne::d_afficherCasiersLibres() {
 
     std::cout << "" << std::endl;
     for(const auto& e : this->casiersDisponibles_) {
-        std::cout << e.numero << " : " << e.volume << " : " << e.indexLiberation << std::endl;
+        std::cout << "Casier numéro : " << e.numero << ", de volume : " << e.volume << ", et d'index libération : " << e.indexLiberation << std::endl;
     }
 }

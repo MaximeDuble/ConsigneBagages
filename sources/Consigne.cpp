@@ -15,8 +15,7 @@ Consigne::~Consigne() {
 }
 
 bool Consigne::estPleine() const {
-    // this->casiersLibres_.empty(); ???
-    return (int) this->casiersPleins_.size() == this->capacite_;
+    return this->casiersLibres_.empty();
 }
 
 Ticket Consigne::deposerBagage(Bagage bagage) {
@@ -47,7 +46,6 @@ Bagage Consigne::retirerBagage(Ticket ticket){
     if (iterateur != this->casiersPleins_.end()) { // Bagage trouvé.
 
         // Recupère le bagage du client.
-        // TODO : Juste retourner le bagage (ne pas en créer de nouveau).
         Bagage bagageTrouve = iterateur->second.bagage; 
 
         iterateur->second.bagage = ""; // On remets le bagage à 0
@@ -77,6 +75,8 @@ size_t Consigne::d_tailleActuelle() const {
 void Consigne::d_afficherFile() const {
 
     std::queue<Casier> fileCopie = this->casiersLibres_;
+
+    std::cout << "" << std::endl;
 
     while (!fileCopie.empty()) {
 

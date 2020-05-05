@@ -3,8 +3,6 @@
 #include <cstdlib>
 #include <string>
 
-// TODO : AJOUTER COMMENTAIRES //
-
 class Ticket {
     public :
 
@@ -15,8 +13,6 @@ class Ticket {
         bool operator!=(Ticket const& autre) const;
 
         // DEBOGAGE
-
-        std::string d_getCode() const;
 
     private:
         std::string code_;

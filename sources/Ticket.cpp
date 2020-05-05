@@ -23,16 +23,6 @@ Ticket::~Ticket() {
 
 size_t Ticket::hash_code() const {
 
-    /*
-    size_t hash = 0;
-
-    for (int i = 0 ; i < LONGUEUR_CHAINE ; i++) {
-        hash += 2 * (int) this->code_[i] + 5;
-    }
-
-    return hash;
-    */
-
    std::hash<std::string> h;
    return h(this->code_);
 
@@ -44,12 +34,4 @@ bool Ticket::operator==(Ticket const& autre) const {
 
 bool Ticket::operator!=(Ticket const& autre) const{
     return autre.code_ != this->code_;
-}
-
-
-
-// FCT° DE DEBOGAGE
-
-std::string Ticket::d_getCode() const{
-    return this->code_;
 }
