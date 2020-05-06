@@ -1,11 +1,15 @@
 #include "../headers/Consigne.hpp"
+
 #include <iostream>
 #include <string>
 #include <queue>
+#include <stdexcept>
 
 Consigne::Consigne(int capacite) : capacite_(capacite) {
+
+    if(this->capacite_ < 1) throw std::invalid_argument("ERREUR : La consigne doit avoir au moins 1 casier.");
  
-    for (int i = 0 ; i < capacite ; i++) {
+    for (int i = 0 ; i < this->capacite_ ; i++) {
         this->casiersLibres_.push(Casier{i+1, ""});
     }
 }
@@ -22,7 +26,7 @@ Ticket Consigne::deposerBagage(Bagage bagage) {
 
 
 
-    if (this->estPleine()) throw "ERREUR : La consigne est pleine.";
+    if (this->estPleine()) throw std::length_error("ERREUR : Impossible de rentrer le bagage " + bagage + ", la consigne est pleine.");
     
     // Récupère le ticket associé au casier le moins récemment utilisé.
     Ticket ticketClient;
@@ -56,13 +60,11 @@ Bagage Consigne::retirerBagage(Ticket ticket){
         // Enlève le ticket et son casier associé de la table de hashage.
         this->casiersPleins_.erase(iterateur);
 
-        
-        
-
         return bagageTrouve;
+        
     } else {
         
-        throw std::string("Bagage non trouvé.");
+        throw std::out_of_range("ERREUR : Bagage non trouvé.");
     }
 }
 

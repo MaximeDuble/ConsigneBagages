@@ -1,14 +1,14 @@
-main2: ./bin/partie2Test.o ./bin/Ticket.o ./bin/vConsigne.o ./bin/vMalette.o ./bin/vCylindre.o ./bin/vDemiSphere.o ./bin/vBagage.o
-	g++ ./bin/partie2Test.o ./bin/Ticket.o ./bin/vConsigne.o ./bin/vMalette.o ./bin/vCylindre.o ./bin/vDemiSphere.o ./bin/vBagage.o -o main2
+mainPartie2: ./bin/partie2Main.o ./bin/Ticket.o ./bin/vConsigne.o ./bin/vMalette.o ./bin/vCylindre.o ./bin/vDemiSphere.o ./bin/vBagage.o
+	g++ ./bin/partie2Main.o ./bin/Ticket.o ./bin/vConsigne.o ./bin/vMalette.o ./bin/vCylindre.o ./bin/vDemiSphere.o ./bin/vBagage.o -o mainPartie2
 
-main1 : ./bin/partie1Test.o ./bin/Ticket.o ./bin/Consigne.o
-	g++ ./bin/partie1Test.o ./bin/Ticket.o ./bin/Consigne.o -o main1
+mainPartie1 : ./bin/partie1Main.o ./bin/Ticket.o ./bin/Consigne.o
+	g++ ./bin/partie1Main.o ./bin/Ticket.o ./bin/Consigne.o -o mainPartie1
 
-./bin/partie1Test.o : partie1Test.cpp
-	g++ -c partie1Test.cpp -o ./bin/partie1Test.o
+./bin/partie1Main.o : partie1Main.cpp
+	g++ -c partie1Main.cpp -o ./bin/partie1Main.o
 
-./bin/partie2Test.o : partie2Test.cpp
-	g++ -c partie2Test.cpp -o ./bin/partie2Test.o
+./bin/partie2Main.o : partie2Main.cpp
+	g++ -c partie2Main.cpp -o ./bin/partie2Main.o
 
 ./bin/Ticket.o : ./sources/Ticket.cpp
 	g++ -c ./sources/Ticket.cpp -o ./bin/Ticket.o

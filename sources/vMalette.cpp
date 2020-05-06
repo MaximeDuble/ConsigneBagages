@@ -1,8 +1,10 @@
 #include "../headers/vMalette.hpp"
+#include <stdexcept>
 
 vMalette::vMalette(std::string nom, std::string marque, float longueur, float largeur, float profondeur) : longueur_(longueur), largeur_(largeur), profondeur_(profondeur), vBagage(nom, marque) {
 
     this->volume_ = calculerVolume();
+    if(this->volume_ < 0) throw std::range_error("ERREUR : Le volume du bagage ne peut pas être inférieur à 0.");
 }
 
 float vMalette::calculerVolume() const {

@@ -13,7 +13,9 @@ vConsigne::vConsigne() {
 vConsigne::vConsigne(std::vector<float> volumes, std::vector<int> nbCasiers) {
 
     if(volumes.size() != nbCasiers.size()) {
-        throw "ERREUR : Tableaux de tailles différentes";
+        throw std::invalid_argument("ERREUR : Tableaux de tailles différentes");
+    } else if (volumes.size() == 0) {
+        throw std::invalid_argument("ERREUR : Aucune valeur dans les tableaux");
     }
 
     // Index du premier casier d'une liste de casiers d'un même volume.
@@ -25,8 +27,8 @@ vConsigne::vConsigne(std::vector<float> volumes, std::vector<int> nbCasiers) {
     for(int i = 0 ; i < nbCasiers.size() ; i++) {
 
         // Un volume ou un nombre de casiers ne doit pas être négatif.
-        if(volumes[i] < 0 || nbCasiers[i] < 0) {
-            throw "ERREUR : Valeur inférieure à 0 impossible !";
+        if(volumes[i] <= 0 || nbCasiers[i] <= 0) {
+            throw std::invalid_argument("ERREUR : Valeur inférieure à 0 impossible !");
         }
 
         // Créé nbCasiers[i] vCasier, d'un volume volumes[i], avec des index débutant à indexDebutCasier (index du premier casier de ce volume).
@@ -68,7 +70,7 @@ bool vConsigne::casierDeBonneTailleDisponible(float volume) const {
 Ticket vConsigne::deposerBagage(vBagage* bagage) {
 
     // On ne peut pas déposer de bagage si la consigne est pleine.
-    if(this->estPleine() || !casierDeBonneTailleDisponible(bagage->getVolume())) throw "ERREUR : Aucun casier de taille suffisante disponible.";
+    if(this->estPleine() || !casierDeBonneTailleDisponible(bagage->getVolume())) throw std::length_error("ERREUR : Aucun casier de taille suffisante disponible.");
 
     // Generation d'un nouveau ticket pour le client.
     Ticket ticketClient;
@@ -113,7 +115,7 @@ vBagage* vConsigne::retirerBagage(Ticket ticket) {
 
         return bagageTrouve;
    
-    } else throw std::string("Bagage non trouvé.");
+    } else throw std::out_of_range("Bagage non trouvé.");
 
       
 }

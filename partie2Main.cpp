@@ -12,7 +12,7 @@
 int main() {
 
     /** 
-     * TAPER "make main2" dans un terminal pour compiler cette partie.
+     * TAPER "make mainPartie2" dans un terminal pour compiler cette partie.
     */
 
     srand(time(NULL));
@@ -63,8 +63,8 @@ int main() {
         // Dépot d'un bagage trop gros.
         Ticket t4 = consigne.deposerBagage(malette1);
         
-    } catch (char const* s) {
-        std::cerr << s << std::endl;
+    } catch (std::exception const& e) {
+        std::cerr << e.what() << std::endl;
     }
     
     consigne.d_afficherCasiersLibres();

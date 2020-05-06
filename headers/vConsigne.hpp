@@ -54,7 +54,11 @@ class vConsigne {
         /** Initialise une consigne avec nbCasiers[i] d'un volume volumes[i] disponibles avec i de 0 à nbCasiers.size()
         * @param volumes, un vecteur de nombres flottants correspondant aux différents volumes disponibles
         * @param nbCasiers, un vecteur d'entiers correspondant aux nbCasiers disponibles associés aux différents volumes disponibles.
-        * @throw Erreur si les tableaux en entrée ont une taille différent ou si l'une de leur valeur est strictement inférieure à 0.
+        * @pre volumes.size() == nbCasiers.size(), taille des tableaux > 0 et toutes les valeurs de nbCasiers et de volumes sont > 0
+        * @throw invalid_argument si nbCasiers.size() != volumes.size();
+        * @throw invalid_argument si nbCasiers.size() == 0 || volumes.size() == 0
+        * @throw invalid_argument si une des valeurs de nbCasiers ou volumes est <= 0.
+        * 
         */
         vConsigne(std::vector<float> volumes, std::vector<int> nbCasiers);
         ~vConsigne();
@@ -68,6 +72,7 @@ class vConsigne {
 
         /** Détermine si un casier de taille suffisante est disponible pour accueillir un bagage de volume volume.
          * @param volume, le volume du bagage.
+         * @pre volume > 0 (vérifié à la création du bagage).
          * @return true si un casier est trouvé.
          */
         bool casierDeBonneTailleDisponible(float volume) const;
@@ -75,8 +80,9 @@ class vConsigne {
         /** Depose le bagage du client dans un casier de taille optimale et retourne un ticket. 
         *  
         *  @param bagage, pointeur vers une instance d'un objet héritant de la classe vBagage
+        *  @pre estPleine() = false et casierDeBonneTailleDisponible(volume->getVolume()) = true.
         *  @return Ticket, le ticket du casier ou est stocké le bagage.
-        *  @throw erreur si la consigne est pleine ou qu'aucun casier n'est disponible pour un bagage de ce volume.
+        *  @throw length_error, si la consigne est pleine ou qu'aucun casier n'est disponible pour un bagage de ce volume.
         */
         Ticket deposerBagage(vBagage* bagage);
 
@@ -84,6 +90,7 @@ class vConsigne {
         /** Rends au client le bagage se situant de le casier associé au Ticket. 
          * @param ticket, le ticket du casier.
          * @return bagage du client.
+         * @throw out_of_range, si aucun casier n'est associé à ce ticket.
         */
         vBagage* retirerBagage(Ticket ticket);
 

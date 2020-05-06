@@ -1,9 +1,11 @@
 #include "../headers/vDemiSphere.hpp"
 #include <cmath>
+#include <stdexcept>
 
 vDemiSphere::vDemiSphere(std::string nom, std::string marque, float diametre) : diametre_(diametre), vBagage(nom, marque) {
 
     this->volume_ = calculerVolume();
+    if(this->volume_ < 0) throw std::range_error("ERREUR : Le volume du bagage ne peut pas être inférieur à 0.");
 }
 
 float vDemiSphere::calculerVolume() const {   

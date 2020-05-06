@@ -16,10 +16,35 @@ class Consigne {
 
     public:
 
+        /** 
+         * Construit une consigne avec un nombre "size" de casiers.
+         * @param "size", le nombre de casiers de la consigne.
+         * @pre size > 0
+         * @throw invalid_argument si size < 1.
+        */
         Consigne(int size);
         ~Consigne();
+
+        /** 
+         * Retourne vrai si la consigne est pleine.
+        */
         bool estPleine() const;
+
+        /** 
+         * Dépose un bagage dans une casier et rend le ticket pour le client.
+         * @param "bagage", le bagage du client.
+         * @pre estPleine() = false.
+         * @return Ticket, le ticket du client associé au casier dans lequel est déposé le bagage.
+         * @throw length_error, si estPleine() = ture.
+        */
         Ticket deposerBagage(Bagage bagage);
+
+        /** 
+         * Rend le bagage disposé dans le casier associé au Ticket passé en paramètre.
+         * @param "ticket", le ticket associé au casier ou est déposé le bagage.
+         * @return Bagage, le bagage déposé dans le casier associé au Ticket ticket.
+         * @throw out_of_range, aucun casier n'est associé à ce ticket.
+        */
         Bagage retirerBagage(Ticket ticket);
 
         // DEBOGAGE
