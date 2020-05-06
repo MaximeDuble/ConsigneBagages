@@ -47,7 +47,7 @@ vConsigne::vConsigne(std::vector<float> volumes, std::vector<int> nbCasiers) {
     // Au début, aucun casier n'a été libéré.
     this->nbCasiersLiberes_ = 0;
 
-    std::cout << "La consigne s'est correctement initialisée, avec " << this->capacite_ << " nouveaux casiers !" << std::endl;
+    std::cout << "La consigne s'est correctement initialisée, avec " << this->capacite_ << " nouveau(x) casier(s) !" << std::endl;
 }
 
 vConsigne::~vConsigne() {
@@ -125,6 +125,7 @@ vBagage* vConsigne::retirerBagage(Ticket ticket) {
 void vConsigne::d_afficherCasiersLibres() {
 
     std::cout << "" << std::endl;
+    std::cout << "Casiers libres : " << std::endl;
     for(const auto& e : this->casiersDisponibles_) {
         std::cout << "Casier numéro : " << e.numero << ", de volume : " << e.volume << ", et d'index libération : " << e.indexLiberation << std::endl;
     }
